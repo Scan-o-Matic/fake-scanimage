@@ -46,6 +46,7 @@ pytest.xml
 coverage.xml
 *.cover
 .hypothesis/
+/result.xml
 
 # Translations
 *.mo
