@@ -1,0 +1,7 @@
+language: python
+python: '3.5'
+before_install:
+  - sudo pip install tox coveralls
+script: tox -- -vv
+after_success:
+  - coveralls
