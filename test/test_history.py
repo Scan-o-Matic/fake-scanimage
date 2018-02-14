@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-import os
 
 from freezegun import freeze_time
 import pytest

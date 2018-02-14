@@ -1,6 +1,3 @@
-import hashlib
-
-
 def test_scan_prints_file_stdout(capfdbinary, scanimage, history_file):
     with open(scanimage.get_scans()[0], 'rb') as fh:
         scan = fh.read()
