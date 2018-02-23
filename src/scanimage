@@ -71,7 +71,9 @@ def scan():
 if __name__ == "__main__":
     flag = sys.argv[1] if len(sys.argv) > 1 else ''
     if flag == '-V':
-        print("scanimage (sane-backends) 1.0.27; backend version 1.0.27")
+        print(
+            "scanimage (sane-backends) 1.0.27; backend version 1.0.27 (fake)"
+        )
     elif flag == '-L':
         print(
             "device `epson2:libusb:001:083' is a Epson GT-X980 flatbed scanner"
