@@ -13,8 +13,8 @@ def test_storing_and_then_loading_history(scanimage, history_file):
     assert history == {'scans': []}
     dt = datetime(1990, 10, 15, 8, 13)
     history['scans'].append(dt)
-    path = scanimage.dump_history(history)
-    with open(path, 'rb') as fh:
+    scanimage.dump_history(history)
+    with open(history_file.name, 'rb') as fh:
         assert (
             fh.read().decode() == '{"scans": ["1990-10-15T08:13:00.000000Z"]}'
         )

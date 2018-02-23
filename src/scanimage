@@ -1,11 +1,25 @@
 #!/usr/bin/env python3
-import json
 from datetime import datetime, date
+from glob import glob
+import json
 import os
 import sys
-from glob import glob
 
 _DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%fZ"
+
+
+def get_history_file():
+    return os.getenv(
+        'FAKE_SCANIMAGE_HISTORY',
+        '/tmp/fake_scanimage_history.json',
+    )
+
+
+def get_data_directory():
+    return os.getenv(
+        'FAKE_SCANIMAGE_DATA',
+        os.path.join(os.path.dirname(__file__), 'data'),
+    )
 
 
 def _json_serial(obj):
@@ -18,9 +32,7 @@ def _json_serial(obj):
 
 def get_stored_history():
     try:
-        with open(os.environ.get(
-            'FAKE_SCANIMAGE_HISTORY', 'fake_scanimage_history.json'
-        ), 'r') as fh:
+        with open(get_history_file()) as fh:
             data = json.load(fh)
     except (OSError, json.decoder.JSONDecodeError):
         data = {'scans': []}
@@ -32,12 +44,8 @@ def get_stored_history():
 
 
 def dump_history(history):
-    path = os.environ.get(
-        'FAKE_SCANIMAGE_HISTORY', 'fake_scanimage_history.json'
-    )
-    with open(path, 'w') as fh:
+    with open(get_history_file(), 'w') as fh:
         json.dump(history, fh, default=_json_serial)
-    return path
 
 
 def is_in_sequence(history, image_paths):
@@ -53,7 +61,7 @@ def is_in_sequence(history, image_paths):
 
 
 def get_scans():
-    return sorted(glob(os.path.join(os.path.dirname(__file__), 'data/*.tiff')))
+    return sorted(glob(os.path.join(get_data_directory(), '*.tiff')))
 
 
 def scan():
