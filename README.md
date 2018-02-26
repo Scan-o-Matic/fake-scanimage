@@ -12,7 +12,7 @@ You can use docker to run the daemon like this:
 ```
 docker run \
   -e SCANOMATICD_APIROOT='https://scanomatic.example.com/api' \
-  -e SCANOMATICD_APIUSERNAME=<username> -
+  -e SCANOMATICD_APIUSERNAME=<username> \
   -e SCANOMATICD_APIPASSWORD=<password> \
   -e SCANOMATICD_SCANNERID=<arbitrary-id> \
   scanomatic/fake-scanner
@@ -20,7 +20,7 @@ docker run \
 
 ## Using more/different images
 
-To limit its size, the image only comes with three images. If you want to use
+To limit its size, the (docker) image only comes with three (scanned) images. If you want to use
 more or use a different set of images, you need to add them to the docker
 container:
 
