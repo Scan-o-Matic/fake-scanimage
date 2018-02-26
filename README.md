@@ -26,7 +26,7 @@ container:
 
 ```
 docker run \
-  ...
-  -v /path/to/the/images:/srv/scans
+  ... \
+  -v /path/to/the/images:/srv/scans \
   scanomatic/fake-scanner
 ```
